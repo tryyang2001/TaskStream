@@ -33,10 +33,23 @@ public class Main {
         return count;
     }
 
+    private static int countDeadlinesWithStream(ArrayList<Task> tasks) {
+        long count = tasks.stream()
+                .filter(t -> t instanceof Deadline)
+                .count();
+        return (int)count;
+    }
+
     public static void printData(ArrayList<Task> tasksData) {
         for (Task t : tasksData) {
             System.out.println(t);
         }
+    }
+
+    public static void printDataWithStreams(ArrayList<Task> tasks) {
+        System.out.println("Printing data using stream");
+        tasks.stream() //convert to stream
+                .forEach(System.out::println); //for each element, print out the data
     }
 
     public static void printDeadlines(ArrayList<Task> tasksData) {
@@ -45,5 +58,11 @@ public class Main {
                 System.out.println(t);
             }
         }
+    }
+    public static void printDeadlinesWithStreams(ArrayList<Task> tasks) {
+        System.out.println("Printing deadlines using stream");
+        tasks.stream() //convert to stream
+                .filter((t) -> t instanceof Deadline) //use lambda expression to check if the task is deadline type
+                .forEach(System.out::println);
     }
 }
