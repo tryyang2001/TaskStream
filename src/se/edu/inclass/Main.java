@@ -59,4 +59,10 @@ public class Main {
             }
         }
     }
+    public static void printDeadlinesWithStreams(ArrayList<Task> tasks) {
+        System.out.println("Printing deadlines using stream");
+        tasks.stream() //convert to stream
+                .filter((t) -> t instanceof Deadline) //use lambda expression to check if the task is deadline type
+                .forEach(System.out::println);
+    }
 }
